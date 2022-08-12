@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,11 @@ class CardController {
 		Card savedCard = this.cardService.issueNewCard(card);
 		return new CardResponse(savedCard.getId(), savedCard.getCard(), savedCard.getDescription());
 	}
+
+	@GetMapping("/count")
+	long count() {
+		return this.cardService.count();
+	}
 }
 
 record IssueCardRequest(String card, String description) {}
@@ -50,6 +56,10 @@ class CardService {
 
 	Card issueNewCard(Card card) {
 		return this.cardRepository.save(card);
+	}
+
+	long count() {
+		return this.cardRepository.count();
 	}
 
 }
