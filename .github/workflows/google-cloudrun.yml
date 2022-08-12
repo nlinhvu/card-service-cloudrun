@@ -53,6 +53,7 @@ on:
 env:
   PROJECT_ID: noted-ensign-357703 # TODO: update Google Cloud project id
   GAR_LOCATION: asia-east1 # TODO: update Artifact Registry location
+  REPOSITORY: card-service-repository
   SERVICE: card-service-cloudrun # TODO: update Cloud Run service name
   REGION: asia-east1 # TODO: update Cloud Run service region
 
@@ -105,8 +106,8 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}" ./
-          docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
+          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" ./
+          docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}"
 
       # END - Docker auth and build
 
