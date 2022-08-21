@@ -5,13 +5,15 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///${DB_DATABASE}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql:///${DB_DATABASE:postgres}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:cardpassword}
     hikari:
+      minimum-idle: 2
+      maximum-pool-size: 5
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE}
+        cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:noted-ensign-357703:asia-east1:card-db}
 
   jpa:
     hibernate:
