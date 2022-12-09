@@ -95,7 +95,7 @@ class StartupInitializer implements ApplicationListener<ContextRefreshedEvent> {
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		log.info("Loading cache...");
 		try {
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.SECONDS.sleep(5);
 		} catch (InterruptedException e) {
 			log.error("Cache is loaded failed");
 		}
