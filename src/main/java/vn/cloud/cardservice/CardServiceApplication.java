@@ -21,6 +21,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
@@ -94,13 +97,18 @@ class StartupInitializer implements ApplicationListener<ContextRefreshedEvent> {
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		log.info("Loading cache...");
-		factor(20000);
+		List<Integer> li = new ArrayList<>();
+		for (int i = 0; i < 1_000_000; i++) {
+			li.add(i);
+		}
+		shuffer(li, 100);
 		log.info("Cache is loaded successfully.");
 	}
 
-	public int factor(int n) {
-		if (n == 1) return 1;
-		return n * factor(n - 1);
+	public void shuffer(List<Integer> li, int n) {
+		for (int i = 0; i < n; i++) {
+			Collections.shuffle(li);
+		}
 	}
 }
 
