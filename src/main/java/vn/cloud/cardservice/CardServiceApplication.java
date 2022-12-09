@@ -94,12 +94,13 @@ class StartupInitializer implements ApplicationListener<ContextRefreshedEvent> {
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		log.info("Loading cache...");
-		try {
-			TimeUnit.SECONDS.sleep(5);
-		} catch (InterruptedException e) {
-			log.error("Cache is loaded failed");
-		}
+		factor(20000);
 		log.info("Cache is loaded successfully.");
+	}
+
+	public int factor(int n) {
+		if (n == 1) return 1;
+		return n * factor(n - 1);
 	}
 }
 
