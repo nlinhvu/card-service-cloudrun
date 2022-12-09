@@ -126,7 +126,7 @@ jobs:
             --update-secrets DB_USERNAME=DB_USERNAME:2 \
             --update-secrets DB_PASSWORD=DB_PASSWORD:2 \
             --update-secrets DB_CLOUD_SQL_INSTANCE=DB_CLOUD_SQL_INSTANCE:1 \
-            --service-account card-service-cloudrun@noted-ensign-357703.iam.gserviceaccount.com
+            --service-account card-service-cloudrun@noted-ensign-357703.iam.gserviceaccount.com \
             --allow-unauthenticated
 
       # If required, use the Cloud Run url output in later steps
