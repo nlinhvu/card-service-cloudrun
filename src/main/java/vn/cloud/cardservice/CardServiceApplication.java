@@ -101,7 +101,7 @@ class StartupInitializer implements ApplicationListener<ContextRefreshedEvent> {
 		for (int i = 0; i < 1_000_000; i++) {
 			li.add(i);
 		}
-		shuffer(li, 100);
+		shuffer(li, 500);
 		log.info("Cache is loaded successfully.");
 	}
 
