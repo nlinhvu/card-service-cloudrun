@@ -3,9 +3,13 @@ package vn.cloud.cardservice;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +21,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class CardServiceApplication {
@@ -79,6 +84,22 @@ class Card {
 	Card(String card, String description) {
 		this.card = card;
 		this.description = description;
+	}
+}
+
+@Component
+@Slf4j
+class CacheInitializer implements ApplicationListener<ContextRefreshedEvent> {
+
+	@Override
+	public void onApplicationEvent(ContextRefreshedEvent event) {
+		log.info("Cache loading...");
+		try {
+			TimeUnit.SECONDS.sleep(15);
+		} catch (InterruptedException e) {
+			log.info("Cache loaded fail!!!");
+		}
+		log.info("Cache is successfully loaded.");
 	}
 }
 
