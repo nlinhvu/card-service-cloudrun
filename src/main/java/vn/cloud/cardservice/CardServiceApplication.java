@@ -87,19 +87,4 @@ class Card {
 	}
 }
 
-@Component
-@Slf4j
-class CacheInitializer implements ApplicationListener<ContextRefreshedEvent> {
-
-	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
-		log.info("Cache loading...");
-		try {
-			TimeUnit.SECONDS.sleep(15);
-		} catch (InterruptedException e) {
-			log.info("Cache loaded fail!!!");
-		}
-		log.info("Cache is successfully loaded.");
-	}
-}
 
