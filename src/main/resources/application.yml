@@ -9,8 +9,8 @@ spring:
     username: ${DB_USERNAME:card-service-cloudrun@noted-ensign-357703.iam}
     password: ${DB_PASSWORD:3213}
     hikari:
-      minimum-idle: 10
-      maximum-pool-size: 10
+      minimum-idle: 2
+      maximum-pool-size: 5
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
         cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:noted-ensign-357703:asia-east1:card-db}
